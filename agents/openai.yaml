@@ -1,0 +1,4 @@
+interface:
+  display_name: "摘要转 HTML 阅读页"
+  short_description: "将摘要制作为适合手机阅读的 HTML 页面"
+  default_prompt: "使用 $digest-to-html 将这份摘要制作成中文 HTML 阅读页。"
