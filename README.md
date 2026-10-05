@@ -1,29 +1,27 @@
-# 摘要转 HTML 阅读页
+# AI Builders 摘要与 HTML 阅读页
 
-`digest-to-html` 是一个面向 Codex 的 Skill，可将已有的 AI Builders 或其他主题摘要整理成清晰、适合手机阅读的 HTML 页面。
+`follow-builders` 是一个 Codex Skill：从中心化 feed 获取 AI 建造者的最新动态，筛选值得关注的产品、工程、Agent 与 AI 安全信号，按偏好生成摘要，并额外制作一份适合手机阅读的 HTML 页面。
 
-## 能做什么
+## 功能
 
-- 将摘要按主题整理成易浏览的栏目和条目卡片。
-- 生成自包含的 HTML 阅读页，使用内嵌样式，不依赖远程脚本、字体或样式表。
-- 采用暖纸色与克制的编辑手记视觉风格，并适配手机屏幕。
-- 保留每条内容的原始来源链接，方便读者查看上下文与出处。
+- 自动获取中心化 feed 中的 X 帖子和 YouTube 播客内容，无需为内容抓取配置 API key。
+- 按用户选择生成中文、英文或中英双语摘要。
+- 保留每条收录内容的原始直达来源链接；没有有效链接的内容不收录。
+- 生成自包含、响应式 HTML 阅读页，采用暖纸色的编辑手记风格，并提供栏目导航。
+- 支持按需运行或配置定时任务；可按设置投递至 stdout、Telegram 或邮件。
 
-## 使用方式
+HTML 页面是同一份已筛选、总结的摘要的附加呈现，不会取代内容获取与行业信息策展。Skill 只依据 feed JSON，不自行搜索或补写 feed 中没有的信息。
 
-在 Codex 中调用 `$digest-to-html`，并提供要整理的摘要内容或文件。例如：
+## 在 Codex 中使用
 
-> 使用 `$digest-to-html`，把这份摘要制作成适合手机阅读的 HTML 页面。
+安装 Skill 后可输入 `$follow-builders` 或 `/ai` 获取最新摘要。首次运行时，Skill 会询问频率、时区、语言和投递方式；之后也可以通过对话修改这些偏好。
 
-如果项目中有 `outputs/` 目录，生成的页面会优先放在那里。带日期的 AI Builders 摘要默认使用 `ai-builders-digest-YYYY-MM-DD.html` 命名。
-
-## 内容原则
-
-这个 Skill 负责呈现和组织已有内容，不会自行抓取 feed 或补写未经来源支持的信息。使用 feed JSON 时，只依据 JSON 中的内容；没有有效直达来源链接的条目会跳过，不会用猜测的链接替代。
+带日期的 HTML 文件命名为 `ai-builders-digest-YYYY-MM-DD.html`，默认保存在当前项目的 `outputs/` 目录。
 
 ## 文件结构
 
 ```text
-├── SKILL.md            # Skill 的任务说明与工作流程
-└── agents/openai.yaml  # Codex 界面显示名称与调用提示
+├── SKILL.md            # 完整的中文引导、摘要、HTML 与投递流程
+├── README.md           # 项目介绍
+└── agents/openai.yaml  # Codex 界面名称与调用提示
 ```
